@@ -6,12 +6,24 @@ Trivial Cassandra Driver plugin for the Bottle web framework
 Install
 =======================
 
+Using pip:
+```
+pip install bottle_cassandra_driver
+```
+
+Using easy_install:
+```
+easy_install bottle_cassandra_driver
+```
+
+From Github:
+
 Download:
 ```
 git clone https://github.com/jeffjirsa/bottle-cassandra-driver.git
 ```
 
-Build & Install:
+Then, Build & Install:
 ```
 cd bottle-cassandra-driver && python setup.py build && sudo python setup.py install
 ```
