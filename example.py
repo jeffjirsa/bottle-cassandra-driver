@@ -1,26 +1,3 @@
-bottle-cassandra-driver
-=======================
-
-Trivial Cassandra Driver plugin for the Bottle web framework
-
-Install
-=======================
-
-Download:
-```
-git clone https://github.com/jeffjirsa/bottle-cassandra-driver.git
-```
-
-Build & Install:
-```
-cd bottle-cassandra-driver && python setup.py build && sudo python setup.py install
-```
-
-Use
-=======================
-
-```
-
 import json
 import bottle
 import bottle_cassandra_driver
@@ -48,4 +25,5 @@ def route_index(cqlconnection):
 
 bottle.run(host=bottle_host, port=bottle_port, reloader=bottle.DEBUG)
 
-```
+
+
