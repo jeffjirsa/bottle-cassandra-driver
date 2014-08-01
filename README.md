@@ -61,3 +61,40 @@ def route_index(cqlconnection):
 bottle.run(host=bottle_host, port=bottle_port, reloader=bottle.DEBUG)
 
 ```
+
+In a uwsgi environment, save the plugin installation for the @postfork :
+
+```
+
+import json
+import bottle
+import bottle_cassandra_driver
+
+from uwsgidecorators import *
+
+
+from bottle import request, response, get, post, put, delete
+
+app = application = bottle.Bottle()
+application = bottle.default_app()
+
+bottle_host='127.0.0.1'
+bottle_port=80
+
+@postfork
+def reconnect_driver():
+    cql_plugin = bottle_cassandra_driver.CassandraPlugin(endpoints=['127.0.0.1'], keyspace='example')
+    bottle.install(cql_plugin)
+
+
+@get(['/'])
+def route_index(cqlconnection):
+    rows = cqlconnection.execute("SELECT account_id FROM accounts")
+    output = []
+    for r in rows:
+        output.append(str(r.account_id))
+    return bottle.HTTPResponse(status=200, body=json.dumps(output))
+
+
+```
+
